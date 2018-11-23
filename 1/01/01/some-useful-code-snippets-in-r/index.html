@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en-US">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+
+		
+		<title>Some useful code snippets in {R} &middot; A Hugo website</title>
+		
+
+		
+			
+		
+
+		
+
+		
+		
+
+
+<link href='//cdn.bootcss.com/highlight.js/9.11.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+		
+
+		<link rel="stylesheet" href="../../../../font-awesome/css/font-awesome.min.css" type="text/css">
+		<link rel="stylesheet" href="../../../../css/poole.css">
+		<link rel="stylesheet" href="../../../../css/syntax.css">
+		<link rel="stylesheet" href="../../../../css/hyde.css">
+		
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="A Hugo website">
+		<link href="../../../../1/01/01/some-useful-code-snippets-in-r" rel="canonical">
+	</head>
+
+	<body class="  h-entry">
+		<main class="content container" role="main">
+			<article class="post">
+				<header>
+					<a class="u-url" href="../../../../1/01/01/some-useful-code-snippets-in-r">
+						<h1 class="post-title p-name">Some useful code snippets in {R}</h1>
+					</a>
+					<time class="post-date dt-published" datetime="0001-01-01T00:00:00Z">Monday, 1 January 0001</time>
+				</header>
+				<main class="post-content e-content">
+					<div id="lollipop-charts-in-r" class="section level2">
+<h2>Lollipop charts in R</h2>
+<p>There comes a time in everyone’s life when ordinary barcharts are not good enough.</p>
+<p>Bar charts are, frankly, boring. Here is one. I mean, how creative can you get with the color pallettes?</p>
+<p><img src="../../../../post/Lolipop-charts-in-R_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p>Time to perk up things a little? Lollipop charts is an option. Take a look:</p>
+<p><img src="../../../../post/Lolipop-charts-in-R_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>This chart has been done in ggplot, which, to my mind, is an awesome piece of engineering because it affords so much flexibility. If the above chart makes sense to you, we can fix individual elements. here is the base code:</p>
+<pre class="r"><code>#define data
+y&lt;-c(6,9,11,13,15)
+#create dataframe
+data=data.frame(x=LETTERS[1:5], y=y)
+#set up labels
+yat&lt;-c(&#39;&#39;,&#39;3&#39;,&#39;6&#39;,&#39;9&#39;,&#39;12&#39;,&#39;15&#39;,&#39;18&#39;)
+library(ggplot2)
+p&lt;-ggplot(data, aes(x=x, y=y)) +
+    geom_segment( aes(x=x, xend=x, y=0, yend=y), color=&quot;springgreen&quot;,size=4) +
+    geom_point( size=8, color=&quot;lawngreen&quot;, fill=alpha(&quot;springgreen3&quot;, 0.3), alpha=0.7,    shape=21, stroke=2)+
+    theme_bw() +
+    scale_y_continuous(limits = c(0,18), breaks = c(0,3,6,9,12,15,18),labels=yat)+
+      coord_flip() + 
+      annotate(&quot;text&quot;, x = 1.225:5.225, y = 0.01, label = labels, size=4,hjust=0.05,family=&quot;serif&quot;,fontface =2)+
+      theme(
+     panel.grid.minor.x = element_blank(),
+     panel.grid.minor.y = element_blank(),
+     panel.border = element_blank(),
+     axis.line=element_blank(),
+     axis.title.x=element_blank(),
+     axis.title.y=element_blank(), 
+       axis.text.y=element_blank(),
+     axis.ticks.y=element_blank())+
+     theme(axis.line.x = element_line(color = &quot;black&quot;), axis.line.y = element_line(color = &quot;black&quot;)
+     )
+     
+plot(p)</code></pre>
+<p>After much experimentation, I have come to realise that labels look best when they are placed on the bars (not inside, as we did in the bar plot, above). You may play around with the horizontal or vertical adjustments in the ‘annotate’ element, till you are satisfied with the final look. Here, I have placed the labels as annotate text items at X + 0.225, which transaltes into a coordinate 122.5% of the x variable.</p>
+<p>Of course, color options are aplenty. Here is an option in (plum2.magenta2 and magenta4). The R color cheat sheet is available at <a href="https://www.nceas.ucsb.edu/~frazier/RSpatialGuides/colorPaletteCheatsheet.pdf" class="uri">https://www.nceas.ucsb.edu/~frazier/RSpatialGuides/colorPaletteCheatsheet.pdf</a></p>
+<p><img src="../../../../post/Lolipop-charts-in-R_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>Just for the record, there are three color elements here: (i) for the bar, (ii) for the fill in the circle and (iii) for the boundary of the circle.</p>
+<p>The color for the bar is defined in geom_segment</p>
+<pre class="r"><code>geom_segment( aes(x=x, xend=x, y=0, yend=y), color=&quot;plum2&quot;,size=4) </code></pre>
+<p>The color for the fill in the circle and the boundary is defined in geom_point</p>
+<pre class="r"><code>    geom_point( size=8, color=&quot;magenta2&quot;, fill=alpha(&quot;magenta4&quot;, 0.3), alpha=0.7, shape=21, stroke=2)</code></pre>
+<p>Here we have kept the fill as green and marked the boundary shape as darkgreen.</p>
+<p>Hope this helps. I am assuming you know how to manipulate the ticks, text and titles on the axes.</p>
+<p>Have fun.</p>
+</div>
+
+				</main>
+				<footer class="footer">
+					
+					
+				</footer>
+			</article>
+		</main>
+				<aside class="sidebar">
+			<div class="container sidebar-sticky">
+				<header class="sidebar-about h-card vcard p-author">
+					
+					<a class="u-url u-uid" rel="me" href="../../../../">
+						<img class="u-photo" src="../../../../author.jpg" width=128 height=128 />
+					</a>
+					
+
+					
+					<span class="site-title u-name fn">
+					  <a class="u-url u-uid" rel="me" href="../../../../">A Hugo website</a>
+				  </span>
+					
+
+					<p class="lead p-note">
+						 A website built through Hugo and blogdown. 
+					</p>
+
+					<nav>
+						<ul class="sidebar-nav">
+							
+							<li><a href="../../../../about/"> About </a></li>
+							
+							<li><a href="../../../../post/"> Posts </a></li>
+							
+						</ul>
+					</nav>
+
+					
+						<aside class="contact">
+						  
+							  <h3 class="contact-head">Contact Me</h3>
+						  
+							<ul class="contact-list">
+								
+								<li>
+									
+									  
+		  						    <i class='fa fa-github fa-fw'></i>
+		  						  
+		  							<a href="https://github.com/rstudio/blogdown" class="u-url url" rel="me">
+		  							  GitHub
+		  							</a>
+								
+								</li>
+								
+								<li>
+									
+									  
+		  						    <i class='fa fa-twitter fa-fw'></i>
+		  						  
+		  							<a href="https://twitter.com/rstudio" class="u-url url" rel="me">
+		  							  Twitter
+		  							</a>
+								
+								</li>
+								
+							</ul>
+						</aside>
+					
+				</header>
+
+				<footer>&copy; 2018. All rights reserved. </footer>
+			</div>
+		</aside>
+
+		  <footer>
+  
+  
+  
+  
+
+  <script src="//cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
+  
+  
+  
+  <script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/r.min.js"></script>
+  <script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/yaml.min.js"></script>
+  <script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+  
+
+ 
+  
+
+  
+  </footer>
+  </body>
+</html>
+
+	</body>
+</html>

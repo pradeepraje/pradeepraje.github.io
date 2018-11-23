@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Useful code</title>
+    <link>/</link>
+    <description>Recent content on Useful code</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 05 Nov 2018 21:48:51 -0700</lastBuildDate>
+    
+	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>About</title>
+      <link>/about/</link>
+      <pubDate>Mon, 05 Nov 2018 21:48:51 -0700</pubDate>
+      
+      <guid>/about/</guid>
+      <description>Over the years, I have collected snippets of code which refused to run as advertised. Getting the code to compile&amp;ndash;and that too on a Windows machine&amp;ndash;was sometimes frustrating but mostly irritating. TBH, I am not a full-time developer; I have a regular day job. So, getting even small segments in the NLP pipeline to work often became a herculean task. And, once I would gt into a challenging spot, the Arian ram in me would refuse to give up untill I had this sorted out.</description>
+    </item>
+    
+    <item>
+      <title>Lollipop charts in {R}</title>
+      <link>/2018/11/06/lollipop-charts-in-r/</link>
+      <pubDate>Tue, 06 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/2018/11/06/lollipop-charts-in-r/</guid>
+      <description>There comes a time in everyone’s life when ordinary barcharts are not good enough.
+Bar charts are, frankly, boring. Here is one. I mean, how creative can you get with the color pallettes?
+Time to perk up things a little? Lollipop charts is an option. Take a look:
+This chart has been done in ggplot, which, to my mind, is an awesome piece of engineering because it affords so much flexibility.</description>
+    </item>
+    
+    <item>
+      <title>Hello R Markdown</title>
+      <link>/2015/07/23/hello-r-markdown/</link>
+      <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
+      
+      <guid>/2015/07/23/hello-r-markdown/</guid>
+      <description>R MarkdownThis is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com.
+You can embed an R code chunk like this:
+summary(cars)## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 26.00 ## Median :15.0 Median : 36.00 ## Mean :15.4 Mean : 42.98 ## 3rd Qu.</description>
+    </item>
+    
+  </channel>
+</rss>
